@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>УбирайКА | iCal Network | Список услуг</title>
+    <th:block th:include="blocks/general.html :: head"></th:block>
+</head>
+
+<body>
+    <div th:replace="blocks/general.html :: nav"></div>
+
+    <main role="main">
+        <div class="container space-created">
+            <a href="/service/create"><button type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span> Создать
+            </button></a>
+            <div class="row">
+                <div class="form-inline my-3 col-md-6 col-lg-4 col-sm-8">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Поиск услуги" aria-label="Search" readonly>
+                    <button class="btn btn-outline-success my-2 my-sm-0 disabled" type="submit">Поиск</button>
+                </div>
+                <div class="input-group my-3 col-md-6 col-lg-4 col-sm-8">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Услуга: </label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected value="-1">-----</option>
+                        <option th:each="type : ${types}" th:value="${type.serviceTypePk}" th:text="${type.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="list-group col-lg-9 col-md-10 col-sm-11 col-12 mx-1">
+                    <a th:each="service : ${services}" th:href="'/service/' + ${service.get('service').servicePk}" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1" th:text="${service.get('service').title}"></h5>
+                            <small class="text-muted" th:text="${#dates.format(service.get('service').date, 'dd.MM.yyyy')}">3 days ago</small>
+                        </div>
+                        <p class="mb-1" th:text="${service.get('service').description}">
+                        </p>
+                        <small class="clearfix text-muted">
+                            <div class="float-left" th:text="${service.get('user').name} + ' ' + ${service.get('user').lastName}"></div>
+                            <div class="float-right" th:text="${service.get('type').name}"></div>
+                        </small>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    </main>
+
+    <div th:replace="blocks/general.html :: footer"></div>
+
+    <th:block th:include="blocks/general.html :: scripts"></th:block>
+</body>
+
+</html>

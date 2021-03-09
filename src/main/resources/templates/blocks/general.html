@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}" type="text/css">
+    <link rel="icon" th:href="@{/custom-icons/broom.png}" type="image/png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>УбирайКА | iCal Network</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" th:fragment="nav">
+    <a class="navbar-brand" href="/">УбирайКА</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="white" d="M19.36,2.72L20.78,4.14L15.06,9.85C16.13,11.39 16.28,13.24 15.38,14.44L9.06,8.12C10.26,7.22 12.11,7.37 13.65,8.44L19.36,2.72M5.93,17.57C3.92,15.56 2.69,13.16 2.35,10.92L7.23,8.83L14.67,16.27L12.58,21.15C10.34,20.81 7.94,19.58 5.93,17.57Z" />
+        </svg>
+        <ul class="navbar-nav mr-auto">
+            <li th:class="'nav-item ' + (${#request.requestURI != '/'}?'':'active')">
+                <a class="nav-link" href="/">Главная</a>
+            </li>
+            <li th:class="'nav-item ' + (${#request.requestURI != '/services'}?'':'active')">
+                <a class="nav-link" href="/services">Список услуг</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Профиль</a>
+            </li>
+
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Поиск услуги" aria-label="Search" readonly>
+            <button class="btn btn-outline-success my-2 my-sm-0 disabled" type="submit">Поиск</button>
+        </div>
+    </div>
+</nav>
+
+
+
+<footer class="container" th:fragment="footer">
+    <hr>
+    <p>&copy; iCal Network 2020-2021</p>
+</footer>
+
+<div th:fragment="scripts">
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</div>
+</body>
+
+</html>

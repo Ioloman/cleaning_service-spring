@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>УбирайКА | iCal Network | Услуга | <th:block th:text="${service.title}"/></title>
+    <th:block th:include="blocks/general.html :: head"></th:block>
+</head>
+
+<body>
+    <div th:replace="blocks/general.html :: nav"></div>
+
+    <main role="main">
+        <div class="container">
+            <div class="row">
+                <div class="my-3 col-12 col-sm-10 col-md-9 col-lg-7 mx-auto">
+                    <form method="POST">
+                        <div class="card text-center">
+                            <div class="card-header" th:text="${user.lastName} + ' ' + ${user.name}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title w-75 mx-auto"><input type="text" name="title" class="form-control" th:value="${service.title}"></h5>
+                                <p class="card-text"><textarea class="form-control" name="description" rows="6" th:text="${service.description}"></textarea></p>
+                            </div>
+                            <div class="card-footer clearfix">
+                                <div class="float-left">
+                                    <span class="material-icons">call</span>
+                                    Тел: <th:block th:text="${user.phone}"/>
+                                </div>
+                                <div class="float-md-right">
+                                    <div class="input-group w-75 float-right">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect02">Цена: </label>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="price" name="price" th:value="${service.price}" aria-describedby="basic-addon1" id="inputGroupSelect02">
+                                        <div class="input-group-append">
+                                            <label class="input-group-text" for="inputGroupSelect02">₽</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-muted clearfix">
+                                <div class="float-md-right">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Услуга: </label>
+                                        </div>
+                                        <select class="custom-select" name="type" id="inputGroupSelect01">
+                                            <option th:each="typeIter : ${types}" th:value="${typeIter.serviceTypePk}" th:text="${typeIter.name}" th:selected="${typeIter.serviceTypePk == type.serviceTypePk}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="float-md-left" th:text="${#dates.format(service.date, 'dd.MM.yyyy')}"></div>
+                            </div>
+                            <div class="card-footer clearfix">
+                                <div class="float-left">
+                                    <button type="submit" class="btn btn-primary" th:formaction="'/service/' + ${service.servicePk} + '/edit'">Изменить</button>
+                                </div>
+                                <div class="float-right">
+                                    <button type="submit" class="btn btn-danger" th:formaction="'/service/' + ${service.servicePk} + '/delete'">Удалить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="blocks/general.html :: footer"></div>
+
+    <th:block th:include="blocks/general.html :: scripts"></th:block>
+</body>
+
+</html>
